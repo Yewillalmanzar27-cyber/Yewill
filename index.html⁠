@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Esther ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #2b1055, #7597de);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            max-width: 420px;
+            width: 100%;
+        }
+        h1 { font-size: 24px; margin-bottom: 15px; color: #fff; }
+        p { font-size: 16px; line-height: 1.6; }
+        .hidden { display: none; }
+        .lock-icon { font-size: 55px; margin-bottom: 10px; }
+        input {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            width: 80%;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 15px;
+            outline: none;
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #ff7eb3;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #ff5293; }
+        .heart { font-size: 40px; margin-top: 15px; }
+        .warning {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255,255,255,0.3);
+            font-size: 14px;
+            color: #ffd1d1;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de Bloqueo -->
+    <div id="lock-screen" class="card">
+        <div class="lock-icon">🔒</div>
+        <h1>Eso tá bloqueao</h1>
+        <p>Esta página e' privá y e' ná ma' para <strong>Esther</strong>.</p>
+        <p style="font-size: 13px; color: #ddd; margin-top: 15px;">Para ver lo que hay aquí adentro, pega el llavero o el sticker NFC al celular.</p>
+        
+        <input type="password" id="secret-input" placeholder="Clave de acceso">
+        <br>
+        <button onclick="verificarClave()">Desbloquear</button>
+    </div>
+
+    <!-- Contenido Real -->
+    <div id="content-screen" class="card hidden" style="background: rgba(255, 117, 140, 0.25);">
+        <h1>Para mi loca, Esther ❤️</h1>
+        <p>Mire mi amor, yo sé que siempre vivimo' peleando y que a vece' yo me pongo serio y mañoso, pero no te me equivoque': <strong>yo a ti te amo con la vida entera</strong>.</p>
+        <p>Aunque no la pasemo' peliando, no me imagino con nadie má' que no sea contigo. Gracias por aguantarme mi loquera y estar ahí para mí.</p>
+        <p>Te amo muchísimo, Esther.</p>
+        <div class="heart">💖</div>
+
+        <div class="warning">
+            Y cuidao contigo si te pone a mandar esto 🖕
+        </div>
+    </div>
+
+    <script>
+        const CLAVE_SECRETA = "esther-y-yo";
+
+        function desbloquear() {
+            document.getElementById('lock-screen').classList.add('hidden');
+            document.getElementById('content-screen').classList.remove('hidden');
+        }
+
+        function verificarClave() {
+            const input = document.getElementById('secret-input').value;
+            if (input.trim() === CLAVE_SECRETA) {
+                desbloquear();
+            } else {
+                alert("Esa no e' la clave loco 🙄 Usa el NFC");
+            }
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const keyValue = urlParams.get('key');
+            if (keyValue === CLAVE_SECRETA) {
+                desbloquear();
+            }
+        }
+    </script>
+</body>
+</html>
